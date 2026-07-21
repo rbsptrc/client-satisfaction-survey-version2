@@ -5,29 +5,35 @@
 
 const CONFIG = {
 
-    /* Google Form URL
-       Replace this AFTER creating your Google Form.
-    */
-    FORM_URL: "",
+    /* Google Form */
 
-    /* Google Form Entry IDs
-       Replace these AFTER getting the pre-filled link.
-    */
-    AGE_ID: "",
-    SEX_ID: "",
-    SATISFACTION_ID: "",
+    FORM_URL:
+        "https://docs.google.com/forms/d/e/1FAIpQLSeeMyHmN09yuL8Y2nPylQdPWtZMKiO13igkTQCUaqKKytlI1Q/formResponse",
+
+    AGE_ID:
+        "entry.1919104394",
+
+    SEX_ID:
+        "entry.1953524582",
+
+    SATISFACTION_ID:
+        "entry.128838202",
 
     /* IndexedDB */
 
-    DB_NAME: "IIPESO_SURVEY_DB",
+    DB_NAME:
+        "IIPESO_SURVEY_DB",
 
-    DB_VERSION: 1,
+    DB_VERSION:
+        1,
 
-    STORE_NAME: "pendingSurveys",
+    STORE_NAME:
+        "pendingSurveys",
 
-    /* Default value for unanswered optional questions */
+    /* Default value for optional questions */
 
-    DEFAULT_OPTIONAL_VALUE: "Did not specify"
+    DEFAULT_OPTIONAL_VALUE:
+        "Did not specify"
 
 };
 
