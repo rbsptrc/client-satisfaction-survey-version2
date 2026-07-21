@@ -41,9 +41,7 @@ async function submitSurvey(survey) {
 
         document.body.appendChild(form);
 
-        form.submit();
-
-        setTimeout(() => {
+        iframe.onload = () => {
 
             document.body.removeChild(form);
 
@@ -51,7 +49,9 @@ async function submitSurvey(survey) {
                 success: true
             });
 
-        }, 1000);
+        };
+
+        form.submit();
 
     });
 
