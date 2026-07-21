@@ -3,56 +3,65 @@
    api.js
 ========================================== */
 
-/**
- * Submit a survey to Google Forms
- */
 async function submitSurvey(survey) {
 
-    const formData = new URLSearchParams();
+    const form = document.createElement("form");
 
-    formData.append(
+    form.method = "POST";
+    form.action = CONFIG.FORM_URL;
+    form.target = "hidden_iframe";
+    form.style.display = "none";
+
+    function addField(name, value) {
+
+        const input = document.createElement("input");
+
+        input.type = "hidden";
+        input.name = name;
+        input.value = value;
+
+        form.appendChild(input);
+
+    }
+
+    addField(
         CONFIG.AGE_ID,
         survey.ageRange || CONFIG.DEFAULT_OPTIONAL_VALUE
     );
 
-    formData.append(
+    addField(
         CONFIG.SEX_ID,
         survey.sex || CONFIG.DEFAULT_OPTIONAL_VALUE
     );
 
-    formData.append(
+    addField(
         CONFIG.SATISFACTION_ID,
         survey.satisfaction
     );
 
-    await fetch(CONFIG.FORM_URL, {
+    document.body.appendChild(form);
 
-        method: "POST",
+    let iframe = document.getElementById("hidden_iframe");
 
-        mode: "no-cors",
+    if (!iframe) {
 
-        headers: {
+        iframe = document.createElement("iframe");
+        iframe.id = "hidden_iframe";
+        iframe.name = "hidden_iframe";
+        iframe.style.display = "none";
 
-            "Content-Type":
-                "application/x-www-form-urlencoded"
+        document.body.appendChild(iframe);
 
-        },
+    }
 
-        body: formData.toString()
+    form.submit();
 
-    });
+    document.body.removeChild(form);
 
-    return {
-
-        success: true
-
-    };
+    return { success: true };
 
 }
 
-/**
- * Check if the browser is online
- */
 function isOnline() {
 
     return navigator.onLine;
