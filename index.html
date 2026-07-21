@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>IIPESO Client Satisfaction Measurement Survey</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>
+            Information Investment Promotions and Employment Services Office (IIPESO)
+        </h1>
+
+        <p class="subtitle">
+            Client Satisfaction Measurement Survey
+        </p>
+
+        <form id="surveyForm">
+
+            <!-- AGE RANGE -->
+
+            <section class="question">
+
+                <h2>
+                    Age Range
+                    <span class="optional">(Optional)</span>
+                </h2>
+
+                <label>
+                    <input
+                        type="radio"
+                        name="ageRange"
+                        value="19 or Lower">
+
+                    19 or Lower
+                </label>
+
+                <label>
+                    <input
+                        type="radio"
+                        name="ageRange"
+                        value="20-34">
+
+                    20–34
+                </label>
+
+                <label>
+                    <input
+                        type="radio"
+                        name="ageRange"
+                        value="35-49">
+
+                    35–49
+                </label>
+
+                <label>
+                    <input
+                        type="radio"
+                        name="ageRange"
+                        value="50-64">
+
+                    50–64
+                </label>
+
+                <label>
+                    <input
+                        type="radio"
+                        name="ageRange"
+                        value="65 or Higher">
+
+                    65 or Higher
+                </label>
+
+            </section>
+
+            <!-- SEX -->
+
+            <section class="question">
+
+                <h2>
+                    Sex
+                    <span class="optional">(Optional)</span>
+                </h2>
+
+                <label>
+
+                    <input
+                        type="radio"
+                        name="sex"
+                        value="Male">
+
+                    Male
+
+                </label>
+
+                <label>
+
+                    <input
+                        type="radio"
+                        name="sex"
+                        value="Female">
+
+                    Female
+
+                </label>
+
+            </section>
+
+            <!-- SATISFACTION -->
+
+            <section class="question">
+
+                <h2>
+
+                    Are you happy with our service?
+
+                    <span class="required">*</span>
+
+                </h2>
+
+                <label>
+
+                    <input
+                        type="radio"
+                        name="satisfaction"
+                        value="Strongly Agree"
+                        required>
+
+                    Strongly Agree
+
+                </label>
+
+                <label>
+
+                    <input
+                        type="radio"
+                        name="satisfaction"
+                        value="Agree">
+
+                    Agree
+
+                </label>
+
+                <label>
+
+                    <input
+                        type="radio"
+                        name="satisfaction"
+                        value="Neither Agree nor Disagree">
+
+                    Neither Agree nor Disagree
+
+                </label>
+
+                <label>
+
+                    <input
+                        type="radio"
+                        name="satisfaction"
+                        value="Disagree">
+
+                    Disagree
+
+                </label>
+
+                <label>
+
+                    <input
+                        type="radio"
+                        name="satisfaction"
+                        value="Strongly Disagree">
+
+                    Strongly Disagree
+
+                </label>
+
+            </section>
+
+            <button
+                type="submit"
+                id="submitBtn">
+
+                Submit Survey
+
+            </button>
+
+            <p id="statusMessage"></p>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="config.js"></script>
+<script src="db.js"></script>
+<script src="api.js"></script>
+<script src="sync.js"></script>
+<script src="app.js"></script>
+
+</body>
+
+</html>
