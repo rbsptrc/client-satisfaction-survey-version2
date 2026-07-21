@@ -4,68 +4,53 @@
 ========================================== */
 
 /**
- * Sync all pending surveys when online
+ * Send all pending surveys to Google Apps Script
  */
 async function syncPendingSurveys() {
 
-    if (!isOnline()) {
-        return;
-    }
+    if (!isOnline()) return;
 
-    try {
+    const surveys = await getPendingSurveys();
 
-        const surveys = await getPendingSurveys();
+    for (const survey of surveys) {
 
-        if (surveys.length === 0) {
-            return;
-        }
+        try {
 
-        for (const survey of surveys) {
+            await submitSurvey(survey);
 
-            try {
+            await deleteSurvey(survey.id);
 
-                await submitSurvey(survey);
+            console.log("Synced:", survey.id);
 
-                await deleteSurvey(survey.id);
+        } catch (error) {
 
-                console.log("Survey synced:", survey.id);
+            console.error("Sync failed:", error);
 
-            } catch (error) {
-
-                console.error("Failed to sync survey:", error);
-
-                // Stop syncing if one submission fails.
-                break;
-
-            }
+            break;
 
         }
-
-    } catch (error) {
-
-        console.error("Sync error:", error);
 
     }
 
 }
 
 /**
- * Automatically sync when internet returns
+ * Sync immediately when internet returns
  */
-window.addEventListener("online", () => {
+window.addEventListener("online", async () => {
 
-    syncPendingSurveys();
+    await syncPendingSurveys();
 
 });
 
 /**
- * Attempt to sync every 30 seconds
+ * Check every 30 seconds
  */
-setInterval(() => {
+setInterval(async () => {
 
     if (isOnline()) {
 
-        syncPendingSurveys();
+        await syncPendingSurveys();
 
     }
 

@@ -3,65 +3,63 @@
    api.js
 ========================================== */
 
+/**
+ * Submit survey to Google Apps Script
+ * Uses a hidden HTML form to avoid CORS issues.
+ */
 async function submitSurvey(survey) {
 
-    const form = document.createElement("form");
+    return new Promise((resolve) => {
 
-    form.method = "POST";
-    form.action = CONFIG.FORM_URL;
-    form.target = "hidden_iframe";
-    form.style.display = "none";
+        let iframe = document.getElementById("hiddenFrame");
 
-    function addField(name, value) {
+        if (!iframe) {
+
+            iframe = document.createElement("iframe");
+            iframe.id = "hiddenFrame";
+            iframe.name = "hiddenFrame";
+            iframe.style.display = "none";
+
+            document.body.appendChild(iframe);
+
+        }
+
+        const form = document.createElement("form");
+
+        form.method = "POST";
+        form.action = CONFIG.API_URL;
+        form.target = "hiddenFrame";
+        form.style.display = "none";
 
         const input = document.createElement("input");
 
         input.type = "hidden";
-        input.name = name;
-        input.value = value;
+        input.name = "data";
+        input.value = JSON.stringify(survey);
 
         form.appendChild(input);
 
-    }
+        document.body.appendChild(form);
 
-    addField(
-        CONFIG.AGE_ID,
-        survey.ageRange || CONFIG.DEFAULT_OPTIONAL_VALUE
-    );
+        form.submit();
 
-    addField(
-        CONFIG.SEX_ID,
-        survey.sex || CONFIG.DEFAULT_OPTIONAL_VALUE
-    );
+        setTimeout(() => {
 
-    addField(
-        CONFIG.SATISFACTION_ID,
-        survey.satisfaction
-    );
+            document.body.removeChild(form);
 
-    document.body.appendChild(form);
+            resolve({
+                success: true
+            });
 
-    let iframe = document.getElementById("hidden_iframe");
+        }, 1000);
 
-    if (!iframe) {
-
-        iframe = document.createElement("iframe");
-        iframe.id = "hidden_iframe";
-        iframe.name = "hidden_iframe";
-        iframe.style.display = "none";
-
-        document.body.appendChild(iframe);
-
-    }
-
-    form.submit();
-
-    document.body.removeChild(form);
-
-    return { success: true };
+    });
 
 }
 
+/**
+ * Check if browser is online
+ */
 function isOnline() {
 
     return navigator.onLine;

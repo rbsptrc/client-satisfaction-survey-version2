@@ -5,20 +5,11 @@
 
 document.addEventListener("DOMContentLoaded", async () => {
 
-    try {
+    await initDB();
 
-        await initDB();
-
-    } catch (error) {
-
-        console.error("IndexedDB initialization failed:", error);
-
-        return;
-
+    if (isOnline()) {
+        await syncPendingSurveys();
     }
-
-    // Attempt to sync any pending surveys
-    syncPendingSurveys();
 
     const form = document.getElementById("surveyForm");
     const submitBtn = document.getElementById("submitBtn");
@@ -48,13 +39,19 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         try {
 
-            // Save locally first
+            // Always save locally first
             await saveSurvey(survey);
 
-            // If online, immediately try to sync
+            // If online, immediately send to Apps Script
             if (isOnline()) {
 
-                await syncPendingSurveys();
+                await submitSurvey(survey);
+
+                const pending = await getPendingSurveys();
+
+                for (const item of pending) {
+                    await deleteSurvey(item.id);
+                }
 
                 statusMessage.textContent =
                     "Survey submitted successfully.";
@@ -62,7 +59,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             } else {
 
                 statusMessage.textContent =
-                    "No internet connection. Your response has been saved and will sync automatically.";
+                    "Offline. Response saved and will sync automatically.";
 
             }
 
@@ -73,7 +70,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             console.error(error);
 
             statusMessage.textContent =
-                "Unable to save your response.";
+                "Submission failed.";
 
         }
 
