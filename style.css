@@ -1,5 +1,6 @@
 /* ==========================================
-   IIPESO Client Satisfaction Measurement Survey
+   IIPESO Client Satisfaction Survey
+   Modern UI
 ========================================== */
 
 *{
@@ -9,151 +10,201 @@
 }
 
 body{
-    font-family:'Inter',sans-serif;
-    background:#f4f6f9;
+
+    font-family:Inter,Segoe UI,sans-serif;
+
+    background:#f5f7fb;
+
     color:#1f2937;
-    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    padding:50px 20px;
+
 }
 
 .container{
+
     width:100%;
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:40px 20px;
+    max-width:760px;
+
 }
 
 .card{
-    width:100%;
-    max-width:720px;
+
     background:#ffffff;
-    border-radius:16px;
-    padding:40px;
-    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+    border-radius:24px;
+
+    padding:48px;
+
+    box-shadow:
+    0 15px 45px rgba(0,0,0,.08);
+
 }
 
 h1{
-    font-size:30px;
-    font-weight:700;
+
+    font-size:2rem;
+
     line-height:1.3;
-    color:#0f172a;
+
     text-align:center;
+
     margin-bottom:10px;
+
+    color:#111827;
+
 }
 
 .subtitle{
+
     text-align:center;
-    color:#64748b;
-    font-size:17px;
-    margin-bottom:35px;
+
+    color:#6b7280;
+
+    margin-bottom:40px;
+
+    font-size:15px;
+
 }
 
 .question{
-    border:1px solid #e2e8f0;
-    border-radius:12px;
-    padding:22px;
-    margin-bottom:24px;
-    background:#fafafa;
+
+    margin-bottom:35px;
+
 }
 
 .question h2{
-    font-size:19px;
-    font-weight:600;
+
+    font-size:18px;
+
     margin-bottom:18px;
-    color:#111827;
+
+    font-weight:600;
+
 }
 
 .optional{
-    color:#6b7280;
+
+    color:#9ca3af;
+
     font-size:14px;
-    font-weight:500;
+
+    font-weight:400;
+
 }
 
 .required{
+
     color:#dc2626;
+
 }
 
-.question label{
+label{
+
     display:flex;
+
     align-items:center;
-    gap:12px;
-    padding:14px;
-    margin-bottom:8px;
-    border-radius:10px;
+
+    gap:14px;
+
+    background:white;
+
+    border:2px solid #e5e7eb;
+
+    border-radius:14px;
+
+    padding:16px 18px;
+
     cursor:pointer;
+
     transition:.2s;
+
+    margin-bottom:12px;
+
 }
 
-.question label:hover{
-    background:#edf4ff;
+label:hover{
+
+    border-color:#2563eb;
+
+    background:#eff6ff;
+
 }
 
-.question input[type="radio"]{
-    width:18px;
-    height:18px;
+input[type=radio]{
+
+    transform:scale(1.25);
+
     accent-color:#2563eb;
-    cursor:pointer;
+
 }
 
 button{
+
     width:100%;
-    padding:16px;
+
     border:none;
-    border-radius:12px;
-    background:#2563eb;
-    color:#ffffff;
-    font-size:17px;
+
+    border-radius:14px;
+
+    padding:18px;
+
+    font-size:16px;
+
     font-weight:600;
+
     cursor:pointer;
+
+    background:#2563eb;
+
+    color:white;
+
     transition:.2s;
+
 }
 
 button:hover{
+
     background:#1d4ed8;
+
 }
 
 button:disabled{
+
     opacity:.6;
+
     cursor:not-allowed;
+
 }
 
 #statusMessage{
-    margin-top:20px;
+
+    margin-top:18px;
+
     text-align:center;
-    font-size:15px;
+
     font-weight:600;
-    color:#15803d;
+
+    color:#2563eb;
+
 }
 
-@media(max-width:768px){
+@media(max-width:700px){
 
-    .card{
-        padding:28px;
-    }
+.card{
 
-    h1{
-        font-size:24px;
-    }
+padding:28px;
 
-    .subtitle{
-        font-size:15px;
-    }
+}
 
-    .question{
-        padding:18px;
-    }
+h1{
 
-    .question h2{
-        font-size:17px;
-    }
+font-size:1.6rem;
 
-    .question label{
-        padding:12px;
-    }
-
-    button{
-        padding:15px;
-    }
+}
 
 }
