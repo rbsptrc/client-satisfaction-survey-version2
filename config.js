@@ -24,8 +24,7 @@ const CONFIG = {
     DB_NAME:
         "IIPESO_SURVEY_DB",
 
-    DB_VERSION:
-        1,
+    DB_VERSION: 2,
 
     STORE_NAME:
         "pendingSurveys",
