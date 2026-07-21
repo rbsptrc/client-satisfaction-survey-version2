@@ -39,19 +39,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         try {
 
-            // Always save locally first
+            // Save locally
             await saveSurvey(survey);
 
-            // If online, immediately send to Apps Script
+            // Sync everything if online
             if (isOnline()) {
 
-                await submitSurvey(survey);
-
-                const pending = await getPendingSurveys();
-
-                for (const item of pending) {
-                    await deleteSurvey(item.id);
-                }
+                await syncPendingSurveys();
 
                 statusMessage.textContent =
                     "Survey submitted successfully.";
