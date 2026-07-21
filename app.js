@@ -61,12 +61,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         } catch (error) {
 
-            console.error(error);
+    console.error(error);
 
-            statusMessage.textContent =
-                "Submission failed.";
+    statusMessage.textContent =
+        "Submission failed: " + (error && error.message ? error.message : String(error));
 
-        }
+}
 
         submitBtn.disabled = false;
 
